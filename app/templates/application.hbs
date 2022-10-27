@@ -1,7 +1,10 @@
-{{page-title "EmberOlder"}}
+<p>{{this.firstName}}</p>
+<p>{{this.lastName}}</p>
+<p>{{this.fullName}}</p>
+{{input type="text" value=this.firstName}}
+{{input type="text" value=this.lastName}}
+{{input type="text" value=this.fullName}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
+{{log allTodos}}
+{{log incomplete}}
 {{outlet}}
