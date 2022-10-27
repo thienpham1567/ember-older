@@ -1,5 +1,4 @@
 /* eslint-env node */
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-older',

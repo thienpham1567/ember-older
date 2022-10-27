@@ -1,10 +1,91 @@
+<nav class='navbar navbar-default'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      {{#link-to 'index' class='navbar-brand'}}
+        Brand
+      {{/link-to}}
+    </div>
+    <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+      <ul class='nav navbar-nav'>
+        {{!-- {{#link-to "about" }}
+      About
+      {{/link-to}}
+        {{#link-to "contact" }}
+      Contact
+      {{/link-to}} --}}
+      </ul>
+    </div>
+  </div>
+</nav>
 <p>{{this.firstName}}</p>
 <p>{{this.lastName}}</p>
 <p>{{this.fullName}}</p>
-{{input type="text" value=this.firstName}}
-{{input type="text" value=this.lastName}}
-{{input type="text" value=this.fullName}}
+{{input type='text' value=this.firstName}}
+{{input type='text' value=this.lastName}}
+{{input type='text' value=this.fullName}}
 
-{{log allTodos}}
-{{log incomplete}}
+<div>
+  <h1>Jobs list</h1>
+  <table class='table striped'>
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Complete</td>
+        <td>Wage</td>
+        <td>Percentage</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each allJobs as |job index|}}
+        <tr>
+          <td>{{job.id}}</td>
+          <td>{{job.title}}</td>
+          <td>{{if job.isDone 'Complete' 'Incomplete'}}</td>
+          <td>{{job.wage}}</td>
+          <td>{{percentage job.wage totalAmount}}</td>
+        </tr>
+      {{else}}
+        <p>There is no jobs</p>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>
+          <button
+            {{action 'addNewJob'}}
+            type='button'
+            class='btn btn-primary'
+          >Add job</button>
+        </td>
+        <td>{{input type='text' value=newTitle placeholder='Title'}}</td>
+        <td>{{input type='text' value=wage placeholder='wage'}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div>
+  <h1>Incomplete Jobs</h1>
+  <table class='table striped'>
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Wage</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each incomplete as |todo index|}}
+        <tr>
+          <td>{{todo.id}}</td>
+          <td>{{todo.title}}</td>
+          <td>{{todo.wage}}</td>
+        </tr>
+      {{else}}
+        <p>There is no todo</p>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 {{outlet}}
